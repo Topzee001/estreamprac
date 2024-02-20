@@ -1,3 +1,4 @@
+import 'package:estreamprac/components/my_button.dart';
 import 'package:estreamprac/screens/auth_screen.dart';
 //import 'package:estreamprac/screens/login_screen.dart';
 import 'package:estreamprac/screens/register_screen.dart';
@@ -10,9 +11,10 @@ class LogReg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade100,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: IconButton(
@@ -41,67 +43,33 @@ class LogReg extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            GestureDetector(
+            MyButton(
+              text: 'Log in',
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => LoginScreen(),
-                //   ),
-                // );
                 Get.to(
                   () => AuthScreen(),
                   transition: Transition.upToDown,
                   duration: Duration(seconds: 1),
                 );
               },
-              child: Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.lightBlueAccent,
-                ),
-                child: Center(
-                  child: Text(
-                    'Log in!',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
             ),
-            SizedBox(height: 20),
-            GestureDetector(
+            const SizedBox(height: 20),
+            MyButton(
+              text: 'Register',
               onTap: () {
                 // Navigator.push(
                 //   context,
                 //   MaterialPageRoute(builder: (context) => RegisterScreen()),
                 // );
                 Get.to(
-                  () => RegisterScreen(),
+                  () => RegisterScreen(
+                    onTap: () {},
+                  ),
                   transition: Transition.downToUp,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
-              child: Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.lightBlueAccent,
-                ),
-                child: Center(
-                  child: Text(
-                    'Register!',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            )
+            ),
           ],
         ),
       ),

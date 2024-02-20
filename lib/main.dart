@@ -47,11 +47,11 @@ class MyApp extends StatelessWidget {
         ), // Define the LogReg page route
         GetPage(
           name: '/login_screen',
-          page: () => LoginScreen(),
+          page: () =>  LoginScreen(onTap: () {  },),
         ),
         GetPage(
           name: '/register_screen',
-          page: () => RegisterScreen(),
+          page: () => RegisterScreen(onTap: () {  },),
         ),
         GetPage(
           name: '/auth_screen',
