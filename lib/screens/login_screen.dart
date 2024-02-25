@@ -27,13 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
           return const Center(child: CircularProgressIndicator());
         }));
     try {
-      //final userCredential =
+      final userCredential =
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
 
-      // print(userCredential);
+       print(userCredential);
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
