@@ -1,11 +1,13 @@
 import 'package:estreamprac/components/my_button.dart';
 import 'package:estreamprac/components/my_textfield.dart';
 import 'package:estreamprac/components/square_tile.dart';
+import 'package:estreamprac/screens/auth_screen.dart';
 import 'package:estreamprac/services/auth_service.dart';
 //import 'package:estreamprac/screens/home_screen.dart';
 //import 'package:estreamprac/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 //import 'package:get/get.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -52,6 +54,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           email: emailController.text,
           password: passwordController.text,
         );
+        //send email verification once the register button is pressed
+        final user = FirebaseAuth.instance.currentUser;
+        await user?.sendEmailVerification();
+        Get.to(
+          () => AuthScreen(),
+          // transition: Transition.upToDown,
+          // duration: Duration(seconds: 1),
+        );
       } else {
         Navigator.pop(context);
         invalidCredentials('password does not match');
@@ -96,15 +106,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 90,
+                  height: 70,
                 ),
                 SlideTransition(
                   position: Tween<Offset>(

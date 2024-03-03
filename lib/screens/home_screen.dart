@@ -11,6 +11,8 @@ class HomeScreen extends StatelessWidget {
   void signUserOut() {
     FirebaseAuth.instance.signOut();
     _authService.handleSignOut();
+    //Navigator.pop();
+    print('Signed out successfully.');
   }
 
   @override
@@ -22,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             onPressed: signUserOut,
             icon: Icon(Icons.logout),
-          )
+          ),
         ],
       ),
       body: Column(

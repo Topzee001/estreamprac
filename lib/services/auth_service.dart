@@ -1,5 +1,8 @@
 //import 'package:estreamprac/screens/register_screen.dart';
+import 'package:estreamprac/screens/home_screen.dart';
+import 'package:estreamprac/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 //import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -31,10 +34,17 @@ class AuthService {
 // Check if the user exists
     if (userCredential != null) {
       // User signed in successfully
-    } else {}
+      Get.to(
+        () => HomeScreen(),
+      );
+    } else {
+      Get.to(
+        () => RegisterScreen(onTap: () {},),
+      );
+    }
 
     //opens a page that allows you to select your email
-    return null;
+   return null;
   }
 
   signUpWithGoogle() async {
@@ -64,5 +74,3 @@ class AuthService {
     }
   }
 }
-
-

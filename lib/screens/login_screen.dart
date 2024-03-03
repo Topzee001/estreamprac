@@ -1,11 +1,14 @@
 import 'package:estreamprac/components/my_button.dart';
 import 'package:estreamprac/components/my_textfield.dart';
 import 'package:estreamprac/components/square_tile.dart';
+import 'package:estreamprac/screens/auth_screen.dart';
+import 'package:estreamprac/screens/home_screen.dart';
 import 'package:estreamprac/services/auth_service.dart';
 //import 'package:estreamprac/screens/home_screen.dart';
 //import 'package:estreamprac/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 //import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,6 +23,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+
+  // @override
+  // void dispose() {
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   super.dispose();
+  //}
+
   void signUserIn() async {
     showDialog(
         context: context,
@@ -28,13 +39,16 @@ class _LoginScreenState extends State<LoginScreen> {
         }));
     try {
       final userCredential =
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-
-       print(userCredential);
       Navigator.pop(context);
+      Get.to(
+        () => const AuthScreen(),
+      );
+
+      print(userCredential);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
 
@@ -45,20 +59,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void invalidCredentials(String message) {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-              title: Center(child: Text(message)),
-              //content: const Text('wrong email or password'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('OK'),
-                ),
-              ]);
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            title: Center(child: Text(message)),
+            //content: const Text('wrong email or password'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('OK'),
+              ),
+            ]);
+      },
+    );
   }
 
   @override
@@ -88,15 +103,15 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 130,
+                  height: 120,
                 ),
                 SlideTransition(
                   position: Tween<Offset>(

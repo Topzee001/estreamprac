@@ -1,5 +1,6 @@
 import 'package:estreamprac/components/my_button.dart';
 import 'package:estreamprac/screens/auth_screen.dart';
+import 'package:estreamprac/screens/login_screen.dart';
 //import 'package:estreamprac/screens/login_screen.dart';
 import 'package:estreamprac/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,22 +35,23 @@ class LogReg extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Welcome back you've been missed",
+              "WELCOME BACK",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             MyButton(
               text: 'Log in',
               onTap: () {
                 Get.to(
-                  () => AuthScreen(),
-                  transition: Transition.upToDown,
-                  duration: Duration(seconds: 1),
+                  () => const AuthScreen(),
+                  //LoginScreen(onTap: () {}),
+                  transition: Transition.downToUp,
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
